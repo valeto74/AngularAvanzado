@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, of } from 'rxjs';
+import { map, retry, catchError, filter } from 'rxjs/operators';
 // import { Observable, Subscription } from 'rxjs/Rx';
 
 
@@ -60,13 +61,13 @@ export class RxjsComponent implements OnInit, OnDestroy {
 
     }, 500 );
 
-  })
-  .retry(2)
-  .map( (resp: any) => {
+  }).pipe(
+  retry(2),
+  map( (resp: any) => {
 
     return resp.valor;
-  })
-  .filter( (valor, index) => {
+  }),
+  filter( (valor, index) => {
 
     if ( (valor % 2) === 1 ) {
       // impar
@@ -76,12 +77,15 @@ export class RxjsComponent implements OnInit, OnDestroy {
       return false;
     }
 
-  });
+  }));
 
 
   }
 
+
+
 }
+
 
 
 
