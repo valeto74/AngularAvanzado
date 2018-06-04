@@ -18,7 +18,7 @@ const pagesRoutes: Routes = [
       { path: 'graficas1', component: Graficas1Component, data: { titulo: 'Gráficas'} },
       { path: 'promesas', component: PromesasComponent, data: { titulo: 'Promesas'} },
       { path: 'rxjs', component: RxjsComponent, data: { titulo: 'RxJs'} },
-      { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Ajustes'} },
+      { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Ajustes del Tema'} },
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
     ]
   }
