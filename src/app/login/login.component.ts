@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 declare function init_plugins();
 
@@ -10,15 +11,18 @@ declare function init_plugins();
 })
 export class LoginComponent implements OnInit {
 
+  email: string;
+  recuerdame: boolean = false;
+
   constructor( public router: Router ) { }
 
   ngOnInit() {
     init_plugins();
   }
 
-  ingresar() {
+  ingresar(forma: NgForm) {
 
-    this.router.navigate([ '/dashboard' ]);
+    // this.router.navigate([ '/dashboard' ]);
 
   }
 
