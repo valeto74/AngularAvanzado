@@ -7,9 +7,7 @@ import { URL_SERVICIOS } from '../../config/config';
 import { Usuario } from '../../models/usuario.model';
 import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UsuarioService {
 
   usuario: Usuario;
@@ -120,17 +118,38 @@ export class UsuarioService {
     return this.http.put( url, usuario ).pipe(
                 map( (resp: any) => {
 
-                  // this.usuario = resp.usuario;
-                  // tslint:disable-next-line:prefer-const
-                  let usuarioDB: Usuario = resp.usuario;
+                  if ( usuario._id === this.usuario._id ) {
+                    // tslint:disable-next-line:prefer-const
+                    let usuarioDB: Usuario = resp.usuario;
+                    this.guardarStorage( usuarioDB._id, this.token, usuarioDB );
+                  }
 
-                  this.guardarStorage( usuarioDB._id, this.token, usuarioDB );
                   swal('Usuario actualizado', usuario.nombre, 'success' );
 
                   return true;
                 }));
 
   }
+
+  // actualizarUsuario( usuario: Usuario ) {
+
+  //   let url = URL_SERVICIOS + '/usuario/' + usuario._id;
+  //   url += '?token=' + this.token;
+
+  //   return this.http.put( url, usuario ).pipe(
+  //               map( (resp: any) => {
+
+  //                 // this.usuario = resp.usuario;
+  //                 // tslint:disable-next-line:prefer-const
+  //                 let usuarioDB: Usuario = resp.usuario;
+
+  //                 this.guardarStorage( usuarioDB._id, this.token, usuarioDB );
+  //                 swal('Usuario actualizado', usuario.nombre, 'success' );
+
+  //                 return true;
+  //               }));
+
+  // }
 
   cambiarImagen( archivo: File, id: string ) {
 
@@ -145,6 +164,36 @@ export class UsuarioService {
           .catch( resp => {
             console.log( resp );
           }) ;
+
+  }
+
+  cargarUsuarios( desde: number = 0 ) {
+
+    // tslint:disable-next-line:prefer-const
+    let url = URL_SERVICIOS + '/usuario?desde=' + desde;
+    return this.http.get( url );
+
+  }
+
+  buscarUsuarios( termino: string ) {
+
+    // tslint:disable-next-line:prefer-const
+    let url = URL_SERVICIOS + '/busqueda/coleccion/usuarios/' + termino;
+    return this.http.get( url ).pipe(
+                map( (resp: any) => resp.usuarios ));
+
+  }
+
+  borrarUsuario( id: string ) {
+
+    let url = URL_SERVICIOS + '/usuario/' + id;
+    url += '?token=' + this.token;
+
+    return this.http.delete( url ).pipe(
+                map( resp => {
+                  swal('Usuario borrado', 'El usuario ha sido eliminado correctamente', 'success');
+                  return true;
+                }));
 
   }
 

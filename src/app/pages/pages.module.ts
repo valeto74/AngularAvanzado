@@ -13,6 +13,8 @@ import { IncrementadorComponent } from '../components/incrementador/incrementado
 import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 
 // ng2-charts
 import { ChartsModule } from 'ng2-charts';
@@ -21,7 +23,6 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 
 // Pipe Module
 import { PipesModule } from '../pipes/pipes.module';
-
 
 
 @NgModule({
@@ -35,7 +36,9 @@ import { PipesModule } from '../pipes/pipes.module';
         AccountSettingsComponent,
         PromesasComponent,
         RxjsComponent,
-        ProfileComponent
+        ProfileComponent,
+        UsuariosComponent,
+        ModalUploadComponent
     ],
     exports: [
         DashboardComponent,
