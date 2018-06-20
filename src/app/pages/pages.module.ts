@@ -23,6 +23,9 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 
 // Pipe Module
 import { PipesModule } from '../pipes/pipes.module';
+import { HospitalesComponent } from './hospitales/hospitales.component';
+import { MedicosComponent } from './medicos/medicos.component';
+import { MedicoComponent } from './medicos/medico.component';
 
 
 @NgModule({
@@ -38,7 +41,10 @@ import { PipesModule } from '../pipes/pipes.module';
         RxjsComponent,
         ProfileComponent,
         UsuariosComponent,
-        ModalUploadComponent
+        ModalUploadComponent,
+        HospitalesComponent,
+        MedicosComponent,
+        MedicoComponent
     ],
     exports: [
         DashboardComponent,
