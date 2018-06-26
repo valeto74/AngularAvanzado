@@ -6,7 +6,9 @@ import { map, catchError } from 'rxjs/operators';
 import { URL_SERVICIOS } from '../../config/config';
 import { Usuario } from '../../models/usuario.model';
 import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
-import { Observable } from 'rxjs/internal/Observable';
+// import { Observable } from 'rxjs/internal/Observable';
+import { throwError } from 'rxjs';
+import swal from 'sweetalert';
 
 @Injectable()
 export class UsuarioService {
@@ -44,7 +46,8 @@ export class UsuarioService {
                   // console.log( err.error.mensaje );
                   this.router.navigate(['/login']);
                   swal( 'No se pudo renovar token', 'No fue posible renovar token', 'error' );
-                  return Observable.throw( err );
+                  return throwError( err );
+                  // return Observable.throw( err );
                 }));
 
 
@@ -129,7 +132,8 @@ export class UsuarioService {
                 catchError( err => {
                   // console.log( err.error.mensaje );
                   swal( 'Error en el login', err.error.mensaje, 'error' );
-                  return Observable.throw( err );
+                  return throwError( err );
+                  // return Observable.throw( err );
                 }));
 
   }
@@ -150,7 +154,8 @@ export class UsuarioService {
               catchError( err => {
                 // console.log( err.error.mensaje );
                 swal( err.error.mensaje, err.error.errors.message, 'error' );
-                return Observable.throw( err );
+                return throwError( err );
+                  // return Observable.throw( err );
               }));
   }
 
@@ -175,7 +180,8 @@ export class UsuarioService {
                 catchError( err => {
                   // console.log( err.error.mensaje );
                   swal( err.error.mensaje, err.error.errors.message, 'error' );
-                  return Observable.throw( err );
+                  return throwError( err );
+                  // return Observable.throw( err );
                 }));
 
   }

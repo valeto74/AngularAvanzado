@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscription, of } from 'rxjs';
+// import { Observable, Subscription, of } from 'rxjs';
 import { map, retry, catchError, filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { Observable } from 'rxjs/internal/Observable';
 // import { Observable, Subscription } from 'rxjs/Rx';
 
 

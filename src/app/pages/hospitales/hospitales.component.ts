@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Hospital } from '../../models/hospital.model';
 import { HospitalService } from '../../services/service.index';
 import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
+// import swal from 'sweetalert';
 
 declare var swal: any;
+
 
 @Component({
   selector: 'app-hospitales',
